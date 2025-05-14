@@ -1,0 +1,36 @@
+encrypt:
+  keyStore:
+    location: classpath:/server.jks
+    password: changeme
+    alias: mytestkey
+    secret: changeme
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: spring-cloud-config-server
+  ai:
+    mcp:
+      server:
+        name: config-mcp-server
+        version: 1.0.0
+        type: SYNC
+  profiles:
+    active: composite
+  cloud:
+    config:
+      server:
+        composite:
+          - type: native
+            search-locations: file:///Users/ryanjbaxter/git-repos/ryanjbaxter/talks/config-server-mcp/spring-cloud-confg-server-mcp-demo/configdir
+          - type: native
+            search-locations: file:///Users/ryanjbaxter/git-repos/ryanjbaxter/talks/config-server-mcp/spring-cloud-confg-server-mcp-demo/configdir2
+#        native:
+#          search-locations: file:///Users/ryanjbaxter/git-repos/ryanjbaxter/talks/config-server-mcp/spring-cloud-confg-server-mcp-demo/configdir
+server:
+  port: 8888
